@@ -1,16 +1,16 @@
-import os
-from flask import Flask, jsonify, request
-from mangum import Mangum
-from asgiref.wsgi import WsgiToAsgi
 from discord_interactions import verify_key_decorator
-import requests
+from flask import Flask, jsonify, request
+from asgiref.wsgi import WsgiToAsgi
+from dotenv import load_dotenv
 from datetime import datetime
-import re
-import discord
 from bs4 import BeautifulSoup
+from mangum import Mangum
+import requests
+import discord
 import logging
 import random
-from dotenv import load_dotenv
+import os
+import re
 
 load_dotenv('.env.local')
 DISCORD_PUBLIC_KEY = os.getenv("DISCORD_PUBLIC_KEY")
@@ -67,7 +67,7 @@ def pull_out_prereqs(input_string):
     return result_string
 
 def create_course_embed(info_list, subject, number):
-    course_explorer_url = f"https://courses.illinois.edu/schedule/{info_list[1]}/{info_list[2].lower()}/{subject}/{number}"
+    course_explorer_url = f"https://courses.illinois.edu/schedule/{info_list[0]}/{info_list[1].lower()}/{subject}/{number}"
 
     title = f"{info_list[2]} {info_list[3]}: {info_list[4]}"
 
@@ -80,13 +80,16 @@ def create_course_embed(info_list, subject, number):
 
     color = illini_blue if random.randint(0, 1) == 0 else illini_orange
 
-    embed = discord.Embed(title=title, url=course_explorer_url, description=description_to_use, color=color)
+    # Create the embed with a URL in the title
+    embed = discord.Embed(title=title, description=description_to_use, color=color)
     embed.add_field(name="Prerequisites", value=pull_out_prereqs(info_list[5]), inline=False)
     embed.add_field(name="Credit Hours", value=info_list[6], inline=False)
     embed.add_field(name="Most Recently Offered", value=term, inline=False)
+    embed.add_field(name="Course Explorer", value=f"[{subject} {number}]({course_explorer_url})", inline=False)
 
     logging.debug(f"Created embed: {embed.to_dict()}")
     return embed
+
 
 def make_api_call(subject, number, semester):
     base_url = "https://uiuc-course-api-production.up.railway.app/search"

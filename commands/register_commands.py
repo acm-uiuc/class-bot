@@ -1,6 +1,6 @@
+from dotenv import load_dotenv
 import requests
 import yaml
-from dotenv import load_dotenv
 import os
 
 load_dotenv('.env.local')
