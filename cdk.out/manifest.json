@@ -1,0 +1,100 @@
+{
+  "version": "31.0.0",
+  "artifacts": {
+    "DiscordBotLambdaStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "DiscordBotLambdaStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "DiscordBotLambdaStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "DiscordBotLambdaStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/adafe0b6d73f4d1e2a2de78deffbe563bdcf423a9b0a4bf57da5b7fe8b56c776.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "DiscordBotLambdaStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "DiscordBotLambdaStack.assets"
+      ],
+      "metadata": {
+        "/DiscordBotLambdaStack/DockerFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DockerFunctionServiceRoleEA5D533D"
+          }
+        ],
+        "/DiscordBotLambdaStack/DockerFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DockerFunction2D76B2A5"
+          }
+        ],
+        "/DiscordBotLambdaStack/DockerFunction/FunctionUrl/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DockerFunctionFunctionUrl0F5531A4"
+          }
+        ],
+        "/DiscordBotLambdaStack/DockerFunction/invoke-function-url": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DockerFunctioninvokefunctionurlCDFE822B"
+          }
+        ],
+        "/DiscordBotLambdaStack/FunctionUrl": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "FunctionUrl"
+          }
+        ],
+        "/DiscordBotLambdaStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/DiscordBotLambdaStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/DiscordBotLambdaStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/DiscordBotLambdaStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "DiscordBotLambdaStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+- name: hello
+  description: Say hello!
+
+- name: echo
+  description: Echo message back to sender.
+  options:
+    - name: message
+      description: The message to echo back.
+      type: 3 # string
+      required: true
+
+- name: course
+  description: Get course information.
+  options:
+    - name: course_code
+      description: The course to get information about.
+      type: 3 # string
+      required: true
